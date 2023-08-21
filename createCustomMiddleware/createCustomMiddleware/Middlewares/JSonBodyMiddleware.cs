@@ -1,4 +1,6 @@
-﻿namespace createCustomMiddleware.Middlewares
+﻿using System.Text;
+
+namespace createCustomMiddleware.Middlewares
 {
     public class JSonBodyMiddleware
     {
@@ -17,7 +19,16 @@
 
             if (context.Request.Method == "POST" && context.Request.ContentType.StartsWith("application/json"))
             {
+                using var reader = new StreamReader(context.Request.Body);
+                var json = await reader.ReadToEndAsync();
 
+                //context.Request.Body nesnesini okuyarak, okuma pozisyonunu (current cursor) değiştirdiniz. Request'in tekrar okunabilir olması için pozisyonu resetlemelesiniz. Aksi halde, endpoint okuma yapamaz ve gıcık bir hata alırsınız.
+                var content = Encoding.UTF8.GetBytes(json);
+                var stream = new MemoryStream();
+                stream.Write(content, 0, content.Length);
+                context.Request.Body = stream;
+                context.Request.Body.Seek(0, SeekOrigin.Begin);
+                context.Items["jsonbody"] = json;
             }
 
 

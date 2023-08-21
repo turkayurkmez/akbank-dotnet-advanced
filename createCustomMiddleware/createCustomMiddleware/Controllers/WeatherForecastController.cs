@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace createCustomMiddleware.Controllers
 {
@@ -28,6 +28,13 @@ namespace createCustomMiddleware.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+        [HttpPost]
+        public IActionResult CreateComment(UserComment userComment)
+        {
+            _logger.LogInformation("Gelen yorum onaylandı");
+            return Ok(userComment);
+
         }
     }
 }

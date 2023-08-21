@@ -1,3 +1,5 @@
+using createCustomMiddleware.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,9 +18,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseHttpsRedirection();
 
+app.UseMiddleware<JSonBodyMiddleware>();
+app.UseMiddleware<BadwordsHandlerMiddleware>();
+
 app.UseAuthorization();
+
+
+
 
 app.MapControllers();
 
