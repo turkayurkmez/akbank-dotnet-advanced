@@ -1,4 +1,4 @@
-using createCustomMiddleware.Middlewares;
+using createCustomMiddleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +22,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseMiddleware<JSonBodyMiddleware>();
-app.UseMiddleware<BadwordsHandlerMiddleware>();
+app.UseBadwordsHandler();
 
 app.UseAuthorization();
 
