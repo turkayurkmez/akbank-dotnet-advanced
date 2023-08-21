@@ -1,7 +1,15 @@
+using DependencyInjection.LifeTime.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<ISingleton, Singleton>();
+builder.Services.AddScoped<IScoped, Scoped>();
+builder.Services.AddTransient<ITransient, Transient>();
+
+builder.Services.AddTransient<GuidService>();
 
 var app = builder.Build();
 
