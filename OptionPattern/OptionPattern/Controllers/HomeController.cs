@@ -9,18 +9,25 @@ namespace OptionPattern.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly SmtpSettings _option;
+        private readonly IOptionsMonitor<SmtpSettings> _option;
 
-        public HomeController(ILogger<HomeController> logger, IOptions<SmtpSettings> options)
+        public HomeController(ILogger<HomeController> logger, IOptionsMonitor<SmtpSettings> options)
         {
             _logger = logger;
-            _option = options.Value;
+            _option = options;
         }
 
         public IActionResult Index()
         {
+            /*
+             * IOptions: uygulama çalıştıktan sonra değişmez ve Singleton
+             * IOptionsSnapshot: "  okunabilir ama scope olarak kalır.
+             * IOptionsMonitpr: " okunabilir ve Singleton
+             */
 
-            return View(_option);
+            _logger.LogInformation($"{nameof(Index)} isimli action çalıştı.\nÇalışma zamanı:{DateTime.Now}");
+
+            return View(_option.CurrentValue);
         }
 
         public IActionResult Privacy()
