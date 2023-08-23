@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using course.Application.DataTransferObjects;
+using course.Application.DataTransferObjects.Requests;
 using course.Application.DataTransferObjects.Responses;
+using course.Entities;
 using course.Infrastructure.Repositories;
 
 namespace course.Application.Services
@@ -14,6 +16,25 @@ namespace course.Application.Services
         {
             _courseRepository = courseRepository;
             _mapper = mapper;
+        }
+
+        public async Task CreateNewCourse(CreateNewCourseRequest courseRequest)
+        {
+            var course = _mapper.Map<Course>(courseRequest);
+            await _courseRepository.CreateNewAsync(course);
+        }
+
+        public async Task DeleteCourse(int id)
+        {
+            await _courseRepository.DeleteAsync(id);
+
+        }
+
+        public async Task<CourseListDisplayResponse> GetCourseAsync(int id)
+        {
+            var course = await _courseRepository.GetByIdAsync(id);
+            var response = course.ConvertToDto<CourseListDisplayResponse>(_mapper);
+            return response;
         }
 
         public async Task<IEnumerable<CourseListDisplayResponse>> GetCourses()
@@ -39,6 +60,24 @@ namespace course.Application.Services
             var response = courses.ConvertToDto<IEnumerable<CourseListDisplayResponse>>(_mapper);
 
             return response;
+        }
+
+        public async Task<IEnumerable<CourseListDisplayResponse>> GetCoursesByTitle(string title)
+        {
+            var courses = await _courseRepository.SearchCoursesByName(title);
+            return _mapper.Map<IEnumerable<CourseListDisplayResponse>>(courses);
+        }
+
+        public async Task<bool> IsExists(int id)
+        {
+            return await _courseRepository.IsExists(id);
+        }
+
+        public async Task UpdateCourse(UpdateCourseRequest courseRequest)
+        {
+            var course = _mapper.Map<Course>(courseRequest);
+            await _courseRepository.UpdateAsync(course);
+
         }
     }
 }
