@@ -6,6 +6,7 @@ namespace course.Application.DataTransferObjects.Requests
     {
         [Required]
         [MaxLength(350)]
+        [MinLength(3)]
         public string Title { get; set; }
         public string? Description { get; set; }
         public DateTime? StartDate { get; set; }

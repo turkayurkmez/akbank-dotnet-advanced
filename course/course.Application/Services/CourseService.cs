@@ -18,10 +18,11 @@ namespace course.Application.Services
             _mapper = mapper;
         }
 
-        public async Task CreateNewCourse(CreateNewCourseRequest courseRequest)
+        public async Task<int> CreateNewCourse(CreateNewCourseRequest courseRequest)
         {
             var course = _mapper.Map<Course>(courseRequest);
             await _courseRepository.CreateNewAsync(course);
+            return course.Id;
         }
 
         public async Task DeleteCourse(int id)

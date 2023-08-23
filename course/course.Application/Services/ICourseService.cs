@@ -9,7 +9,7 @@ namespace course.Application.Services
         Task<IEnumerable<CourseListDisplayResponse>> GetCourses();
         Task<IEnumerable<CourseListDisplayResponse>> GetCoursesByTitle(string title);
 
-        Task CreateNewCourse(CreateNewCourseRequest courseRequest);
+        Task<int> CreateNewCourse(CreateNewCourseRequest courseRequest);
         Task UpdateCourse(UpdateCourseRequest courseRequest);
         Task DeleteCourse(int id);
 
