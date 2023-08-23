@@ -15,10 +15,33 @@ namespace course.Web.Controllers
             _courseService = courseService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNo = 1)
         {
             var courses = await _courseService.GetCourses();
-            return View(courses);
+
+            PagingInfo pagingInfo = new PagingInfo
+            {
+                CurrentPage = pageNo,
+                PageSize = 2,
+                TotalItemsCount = courses.Count()
+            };
+            //var pageSize = 2;
+            //var total = Math.Ceiling((decimal)courses.Count() / pageSize);
+            //ViewBag.Total = total;
+
+            var paginated = courses.OrderBy(c => c.Id)
+                                   .Skip((pageNo - 1) * pagingInfo.PageSize)
+                                   .Take(pagingInfo.PageSize)
+                                   .ToList();
+
+
+
+            HomeIndexViewModel model = new HomeIndexViewModel
+            {
+                CourseLists = paginated,
+                PagingInfo = pagingInfo
+            };
+            return View(model);
         }
 
         public IActionResult Privacy()

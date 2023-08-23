@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using course.Application.DataTransferObjects;
 using course.Application.DataTransferObjects.Responses;
 using course.Infrastructure.Repositories;
 
@@ -33,7 +34,9 @@ namespace course.Application.Services
 
             // TODO 1.1: Bu kısmı extension metot yap:
 
-            var response = _mapper.Map<IEnumerable<CourseListDisplayResponse>>(courses);
+            // var response = _mapper.Map<IEnumerable<CourseListDisplayResponse>>(courses);
+
+            var response = courses.ConvertToDto<IEnumerable<CourseListDisplayResponse>>(_mapper);
 
             return response;
         }
