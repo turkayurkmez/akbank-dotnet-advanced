@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.Entities", "course.E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentations", "presentations", "{CB1D4C6E-1256-41C2-9F2E-F8B79A8D440E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.MVC", "course.MVC\course.MVC.csproj", "{3996C4F4-CB21-4C0F-9067-361A97325693}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.Web", "course.Web\course.Web.csproj", "{D9938295-1683-4D1D-8F80-1F3AD7EB3A0B}"
 EndProject
 Global
@@ -33,10 +31,6 @@ Global
 		{B89BBDD7-CFF9-406E-A69A-248C5F3A82CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B89BBDD7-CFF9-406E-A69A-248C5F3A82CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B89BBDD7-CFF9-406E-A69A-248C5F3A82CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3996C4F4-CB21-4C0F-9067-361A97325693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3996C4F4-CB21-4C0F-9067-361A97325693}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3996C4F4-CB21-4C0F-9067-361A97325693}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3996C4F4-CB21-4C0F-9067-361A97325693}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9938295-1683-4D1D-8F80-1F3AD7EB3A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9938295-1683-4D1D-8F80-1F3AD7EB3A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9938295-1683-4D1D-8F80-1F3AD7EB3A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -46,7 +40,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3996C4F4-CB21-4C0F-9067-361A97325693} = {CB1D4C6E-1256-41C2-9F2E-F8B79A8D440E}
 		{D9938295-1683-4D1D-8F80-1F3AD7EB3A0B} = {CB1D4C6E-1256-41C2-9F2E-F8B79A8D440E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

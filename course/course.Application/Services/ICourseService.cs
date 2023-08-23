@@ -1,9 +1,9 @@
-﻿using course.Entities;
+﻿using course.Application.DataTransferObjects.Responses;
 
 namespace course.Application.Services
 {
     public interface ICourseService
     {
-        Task<IEnumerable<Course>> GetCourses();
+        Task<IEnumerable<CourseListDisplayResponse>> GetCourses();
     }
 }

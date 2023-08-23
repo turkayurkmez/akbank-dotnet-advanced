@@ -18,7 +18,7 @@ namespace course.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var courses = await _courseService.GetCourses();
-            return Json(courses);
+            return View(courses);
         }
 
         public IActionResult Privacy()

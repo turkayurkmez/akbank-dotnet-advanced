@@ -1,3 +1,4 @@
+using course.Application.MapProfile;
 using course.Application.Services;
 using course.Infrastructure.Data;
 using course.Infrastructure.Repositories;
@@ -11,6 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("db");
 builder.Services.AddDbContext<CourseDbContext>(builder => builder.UseSqlServer(connectionString));
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ICourseRepository, EFCourseRepository>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
