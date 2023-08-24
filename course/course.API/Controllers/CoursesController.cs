@@ -1,4 +1,5 @@
-﻿using course.Application.DataTransferObjects.Requests;
+﻿using course.API.Filters;
+using course.Application.DataTransferObjects.Requests;
 using course.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,29 +60,33 @@ namespace course.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [NullReference]
+        [IsExists]
         public async Task<IActionResult> Update(int id, UpdateCourseRequest updateCourseRequest)
         {
-            if (await _courseService.IsExists(id))
+            //if (await _courseService.IsExists(id))
+            //{
+            if (id == updateCourseRequest.Id && ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    await _courseService.UpdateCourse(updateCourseRequest);
-                    return Ok();
-                }
-                return BadRequest(ModelState);
+                await _courseService.UpdateCourse(updateCourseRequest);
+                //throw new NullReferenceException($"bilmemne nesnesi null olamaz");
+                return Ok();
             }
-            return NotFound();
+            return BadRequest(ModelState);
+            //}
+            //return NotFound();
         }
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [IsExists]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await _courseService.IsExists(id))
-            {
-                await _courseService.DeleteCourse(id);
-                return Ok();
-            }
-            return NotFound();
+            //if (await _courseService.IsExists(id))
+            //{
+            await _courseService.DeleteCourse(id);
+            return Ok();
+            //}
+            //return NotFound();
         }
 
     }

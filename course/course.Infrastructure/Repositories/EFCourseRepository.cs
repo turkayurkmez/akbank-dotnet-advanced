@@ -7,6 +7,7 @@ namespace course.Infrastructure.Repositories
     public class EFCourseRepository : ICourseRepository
     {
         private readonly CourseDbContext courseDbContext;
+        //private readonly DbSet<Course> courseSet;
 
         public EFCourseRepository(CourseDbContext courseDbContext)
         {
@@ -39,6 +40,11 @@ namespace course.Infrastructure.Repositories
 
         public async Task<bool> IsExists(int id)
         {
+            //Type t = typeof(Course);
+            //var entitySet = courseDbContext.Set(typeof(Course));
+            //DbContext ctx;
+            //ctx.s
+
             return await courseDbContext.Courses.AnyAsync(c => c.Id == id);
         }
 

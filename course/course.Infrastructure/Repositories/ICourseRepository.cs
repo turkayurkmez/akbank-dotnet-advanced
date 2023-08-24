@@ -6,5 +6,6 @@ namespace course.Infrastructure.Repositories
     {
         Task<IEnumerable<Course>> SearchCoursesByName(string courseName);
 
+
     }
 }
