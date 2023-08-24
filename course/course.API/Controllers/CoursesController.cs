@@ -1,6 +1,7 @@
 ﻿using course.API.Filters;
 using course.Application.DataTransferObjects.Requests;
 using course.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace course.API.Controllers
@@ -43,6 +44,8 @@ namespace course.API.Controllers
             var courses = await _courseService.GetCoursesByTitle(title);
             return Ok(courses);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

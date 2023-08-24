@@ -7,11 +7,11 @@ namespace course.API.Filters
     public class IsExistsFilter : IAsyncActionFilter
     {
         private readonly ICourseService _courseService;
-        private string _entity;
+
         public IsExistsFilter(ICourseService courseService)
         {
             _courseService = courseService;
-            //_entity = entity;
+
 
         }
 
