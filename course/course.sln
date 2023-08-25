@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.Application", "course.Application\course.Application.csproj", "{D871CBD1-0BC4-45DA-88C3-0C1D616583F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "course.Application", "course.Application\course.Application.csproj", "{D871CBD1-0BC4-45DA-88C3-0C1D616583F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.Infrastructure", "course.Infrastructure\course.Infrastructure.csproj", "{B3B759F0-10B1-42E8-8D0B-6F98728F1496}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "course.Infrastructure", "course.Infrastructure\course.Infrastructure.csproj", "{B3B759F0-10B1-42E8-8D0B-6F98728F1496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.Entities", "course.Entities\course.Entities.csproj", "{B89BBDD7-CFF9-406E-A69A-248C5F3A82CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "course.Entities", "course.Entities\course.Entities.csproj", "{B89BBDD7-CFF9-406E-A69A-248C5F3A82CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentations", "presentations", "{CB1D4C6E-1256-41C2-9F2E-F8B79A8D440E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.Web", "course.Web\course.Web.csproj", "{D9938295-1683-4D1D-8F80-1F3AD7EB3A0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "course.Web", "course.Web\course.Web.csproj", "{D9938295-1683-4D1D-8F80-1F3AD7EB3A0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "course.API", "course.API\course.API.csproj", "{C738A27D-91E8-49C1-A75F-CB2975217441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "course.API", "course.API\course.API.csproj", "{C738A27D-91E8-49C1-A75F-CB2975217441}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0C72DF43-5559-4F68-91AF-2E8A51BEAEDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{C738A27D-91E8-49C1-A75F-CB2975217441}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C738A27D-91E8-49C1-A75F-CB2975217441}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C738A27D-91E8-49C1-A75F-CB2975217441}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C72DF43-5559-4F68-91AF-2E8A51BEAEDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C72DF43-5559-4F68-91AF-2E8A51BEAEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C72DF43-5559-4F68-91AF-2E8A51BEAEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C72DF43-5559-4F68-91AF-2E8A51BEAEDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

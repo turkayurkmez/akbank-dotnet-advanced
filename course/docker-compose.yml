@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  course.api:
+    image: ${DOCKER_REGISTRY-}courseapi
+    build:
+      context: .
+      dockerfile: course.API/Dockerfile

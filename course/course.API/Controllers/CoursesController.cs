@@ -3,37 +3,70 @@ using course.Application.DataTransferObjects.Requests;
 using course.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace course.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class CoursesController : ControllerBase
     {
         private readonly ICourseService _courseService;
+        private readonly IMemoryCache _memCache;
+        private readonly ILogger<CoursesController> _logger;
 
-        public CoursesController(ICourseService courseService)
+
+        public CoursesController(ICourseService courseService, IMemoryCache memoryCache, ILogger<CoursesController> logger)
         {
             _courseService = courseService;
+            _memCache = memoryCache;
+            _logger = logger;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCourses()
         {
-            var courses = await _courseService.GetCourses();
-            return Ok(courses);
+            /*
+             * varsa kullan
+             * yoksa oluştur.
+             * 
+             */
+
+            if (!_memCache.TryGetValue("allCourses", out CacheInfo cacheInfo))
+            {
+                cacheInfo = new CacheInfo
+                {
+                    Courses = await _courseService.GetCourses(),
+                    CacheTime = DateTime.Now
+
+                };
+
+                var option = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1))
+                                                           .SetPriority(CacheItemPriority.Normal)
+                                                           .RegisterPostEvictionCallback((key, value, reason, state) =>
+                                                           {
+                                                               _logger.LogInformation($"{key.ToString()} verisi; cache'den çıktı. Sebebi: {reason.ToString()} ");
+                                                           });
+
+                _memCache.Set("allCourses", cacheInfo, option);
+
+            }
+            //var courses = await _courseService.GetCourses();
+            return Ok(cacheInfo);
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ResponseCache(Duration = 70, Location = ResponseCacheLocation.Client, VaryByQueryKeys = new[] { "id" })]
         public async Task<IActionResult> GetCourse(int id)
         {
             var course = await _courseService.GetCourseAsync(id);
             if (course != null)
             {
-                return Ok(course);
+                return Ok(new { course = course, cacheDate = DateTime.Now });
             }
             return NotFound(new { message = $"{id} id'li bir kurs bulunamadı" });
         }

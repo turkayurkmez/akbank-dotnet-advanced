@@ -16,6 +16,7 @@ namespace course.Infrastructure.Repositories
 
         public async Task CreateNewAsync(Course entity)
         {
+
             await courseDbContext.Courses.AddAsync(entity);
             await courseDbContext.SaveChangesAsync();
 
